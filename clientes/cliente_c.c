@@ -59,7 +59,9 @@ int main(int argc, char *argv[])
 	printf("\n N: %i", n);
 
 	printf("este es el que jode %c valor %d \n",recvBuff[0],recvBuff[0]);
+
         memcpy(recvBuff,&recvBuff[1],strlen(recvBuff)-1);
+	recvBuff[strlen(recvBuff)-1]='\0';
 	
 	printf("\n buf:%s \n", recvBuff);
 
