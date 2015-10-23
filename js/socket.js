@@ -30,7 +30,7 @@
           case "brazo":{
             
            $('#brazo').append('origen: '+res.origen+' mensaje: '+res.texto);
-   |       }break;
+          }break;
           
         }
 
