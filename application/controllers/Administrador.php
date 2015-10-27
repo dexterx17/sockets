@@ -18,8 +18,8 @@ class Administrador extends CI_Controller {
 		$this->socket->bind('message', 'wsOnMessage');
 		$this->socket->bind('open', 'wsOnOpen');
 		$this->socket->bind('close', 'wsOnClose');     
-		$this->socket->wsStartServer('192.168.1.8',9300);
-		$this->load->view('administrador/consola');
+		$this->socket->wsStartServer('192.168.0.71',9301);
+		//$this->load->view('administrador/consola');
 	}
 
 	function wsOnMessage($clientID, $message, $messageLength, $binary) {
