@@ -1,8 +1,8 @@
 var config = {
     openSocket: function(config) {
 
-        var channel = config.channel || location.href.replace( /\/|:|#|%|\.|\[|\]/g , '');
-        //var channel = 'http19216818socketsAdministradorvideo';
+        //var channel = config.channel || location.href.replace( /\/|:|#|%|\.|\[|\]/g , '');
+        var channel = 'http19216818socketsAdministradorvideo';
         var socket = new Firebase('https://webrtc.firebaseIO.com/' + channel);
         socket.channel = channel;
         socket.on("child_added", function(data) {
@@ -33,7 +33,7 @@ var config = {
 
 
 function captureUserMedia(callback) {
-    var constraints = null;
+    var constraints = {audio:true,video:true};
    
     if ( DetectRTC.hasWebcam !== true) {
         alert('DetectRTC library is unable to find webcam; maybe you denied webcam access once and it is still denied or maybe webcam device is not attached to your system or another app is using same webcam.');
@@ -65,25 +65,19 @@ var broadcastUI = broadcast(config);
 
 /* UI specific */
 var videosContainer = document.getElementById('videos-container') || document.body;
+$(document).ready(function(){
 
-setTimeout(function(){
-    captureUserMedia(function() {
-        broadcastUI.createRoom({
-            roomName: 'Teleoperacion',
-            isAudio:true
+    setTimeout(function(){
+        captureUserMedia(function() {
+            broadcastUI.createRoom({
+                roomName: 'Teleoperacion',
+                isAudio:true
+            });
         });
-    });
-    hideUnnecessaryStuff();
-},1000);
+    },1000);
+});
 
 
-function hideUnnecessaryStuff() {
-    var visibleElements = document.getElementsByClassName('visible'),
-        length = visibleElements.length;
-    for (var i = 0; i < length; i++) {
-        visibleElements[i].style.display = 'none';
-    }
-}
 
 function rotateInCircle(video) {
     video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';

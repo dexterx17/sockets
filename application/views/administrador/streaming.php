@@ -18,7 +18,7 @@
 <body>
 <h1>TELEOPERACION</h1>
   <!-- copy this <section> and next <script> -->
-            <section class="experiment">                
+            <section class="experiment"> 
                 <!-- local/remote videos container -->
                 <div id="videos-container"></div>
             </section>

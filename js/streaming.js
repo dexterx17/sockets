@@ -31,81 +31,28 @@
                     },
                     onRoomFound: function(room) {
                           setTimeout(function(){
-                            broadcastUI.joinRoom({
-                                roomToken: room.broadcaster,
-                                joinUser: room.broadcaster
-                            });
-                            hideUnnecessaryStuff();
-                          	
+                           joinRoom(room);
                           },2000);
-                        
                     },
                     onNewParticipant: function(numberOfViewers) {
                         document.title = 'Viewers: ' + numberOfViewers;
                     }
                 };
 
-       
-               /*     captureUserMedia(function() {
-                        var shared = 'video';
-                        if (window.option == 'Only Audio') {
-                            shared = 'audio';
-                        }
-                        if (window.option == 'Screen') {
-                            shared = 'screen';
-                        }
-                        
-                        broadcastUI.createRoom({
-                            roomName: (document.getElementById('broadcast-name') || { }).value || 'Anonymous',
-                            isAudio: shared === 'audio'
-                        });
-                    });
-                    hideUnnecessaryStuff();
-                */
-
-                function captureUserMedia(callback) {
-                    var constraints = null;
-                    
-                    if (DetectRTC.hasWebcam !== true) {
-                        alert('DetectRTC library is unable to find webcam; maybe you denied webcam access once and it is still denied or maybe webcam device is not attached to your system or another app is using same webcam.');
-                    }
-
-                    var htmlElement = document.createElement('video');
-                    htmlElement.setAttribute('autoplay', true);
-                    htmlElement.setAttribute('controls', true);
-                    videosContainer.insertBefore(htmlElement, videosContainer.firstChild);
-
-                    var mediaConfig = {
-                        video: htmlElement,
-                        onsuccess: function(stream) {
-                            config.attachStream = stream;
-                            callback && callback();
-
-                            htmlElement.setAttribute('muted', true);
-                            rotateInCircle(htmlElement);
-                        },
-                        onerror: function() {
-                           alert('unable to get access to your webcam');
-                        }
-                    };
-                    if (constraints) mediaConfig.constraints = constraints;
-                    getUserMedia(mediaConfig);
-                }
-
                 var broadcastUI = broadcast(config);
 
                 /* UI specific */
                 var videosContainer = document.getElementById('videos-container') || document.body;
-                var setupNewBroadcast = document.getElementById('setup-new-broadcast');
-            
 
-                function hideUnnecessaryStuff() {
-                    var visibleElements = document.getElementsByClassName('visible'),
-                        length = visibleElements.length;
-                    for (var i = 0; i < length; i++) {
-                        visibleElements[i].style.display = 'none';
-                    }
+                function joinRoom(room){
+                	console.log('joiningRoom'+room.broadcaster);
+                	 broadcastUI.joinRoom({
+                                roomToken: room.broadcaster,
+                                joinUser: room.broadcaster
+                            });
+
                 }
+
 
                 function rotateInCircle(video) {
                     video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';

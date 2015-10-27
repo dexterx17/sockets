@@ -80,6 +80,8 @@ var broadcast = function(config) {
                 });
             },
             onRemoteStream: function(stream) {
+                console.log('stream');
+                console.log(stream);
                 if (!stream) return;
 
                 htmlElement[moz ? 'mozSrcObject' : 'src'] = moz ? stream : webkitURL.createObjectURL(stream);
