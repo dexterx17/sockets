@@ -22,6 +22,11 @@ class Administrador extends CI_Controller {
 		$this->load->view('administrador/consola');
 	}
 
+	public function video(){
+		$data=array();
+		$this->load->view('administrador/admin_video',$data);
+	}
+
 	function wsOnMessage($clientID, $message, $messageLength, $binary) {
 	
 		$ip = long2ip($this->socket->wsClients[$clientID][6]);
