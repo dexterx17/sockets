@@ -138,12 +138,12 @@ class PHPWebSocket
 						// client socket changed
 						$buffer = '';
 						$bytes = @socket_recv($socket, $buffer, 4096, 0);
-
 						if ($bytes === false) {
 							// error on recv, remove client socket (will check to send close frame)
 							$this->wsSendClientClose($clientID, self::WS_STATUS_PROTOCOL_ERROR);
 						}
 						elseif ($bytes > 0) {
+							var_dump($bytes);
 							// process handshake or frame(s)
 							if (!$this->wsProcessClient($clientID, $buffer, $bytes)) {
 								$this->wsSendClientClose($clientID, self::WS_STATUS_PROTOCOL_ERROR);

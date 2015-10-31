@@ -1,0 +1,32 @@
+{
+   "author": "Muaz Khan",
+   "background": {
+      "persistent": false,
+      "scripts": [ "websocket.js", "RTCMultiConnection.js", "desktop-capturing.js" ]
+   },
+   "browser_action": {
+      "default_icon": "images/desktopCapture22.png",
+      "default_title": "Share Desktop!"
+   },
+   "description": "Share screen of any application or entire screen or screen of any chrome tab. It is private, full-HD screen sharing.",
+   "homepage_url": "https://www.webrtc-experiment.com/",
+   "icons": {
+      "128": "images/desktopCapture128.png",
+      "16": "images/desktopCapture16.png",
+      "22": "images/desktopCapture22.png",
+      "32": "images/desktopCapture32.png",
+      "48": "images/desktopCapture48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmHtamKyPNIixPrMw3D96kHBS0m2Ot6wP+7I/USMknbkBQRfq5gDFZxwR6KDyaLV7jsh4B4m/skvRJKWUsccBlRyTZSZYNxnhyUhSqtCLc3K4degOzHyQEkYpVhPv+m+gzFF90d2aq6fpPTfgFgQc1VTGvXZQwY2sIKT1J4O1ZDIH9adINJftjZnIOni0AjlzWVKxT8nLnp6Fcbu/SRzKCkXoxzkXvaZdeum9YKBNrnezcSlsWOrob+SSKJWdGBHoKmp9zkiuLl/qIs48zC0WofMwzWT6T8LtHa4vAwdX8NVneZa+KufPazFi/N4xijZjudnErl+Jq3dlCHm+foowIwIDAQAB",
+   "manifest_version": 2,
+   "minimum_chrome_version": "34",
+   "name": "WebRTC Desktop Sharing",
+   "options_ui": {
+      "chrome_style": true,
+      "page": "options.html"
+   },
+   "permissions": [ "desktopCapture", "storage" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "1.9",
+   "web_accessible_resources": [ "images/desktopCapture48.png" ]
+}

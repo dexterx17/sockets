@@ -10,4 +10,9 @@ class Cliente extends CI_Controller {
 		$this->load->view('administrador/streaming',$data);
 	}
 
+	public function pantalla(){
+		$data=array();
+		$this->load->view('administrador/pantalla',$data);
+	}
+
 }
