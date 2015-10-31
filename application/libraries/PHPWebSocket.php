@@ -143,7 +143,6 @@ class PHPWebSocket
 							$this->wsSendClientClose($clientID, self::WS_STATUS_PROTOCOL_ERROR);
 						}
 						elseif ($bytes > 0) {
-							var_dump($bytes);
 							// process handshake or frame(s)
 							if (!$this->wsProcessClient($clientID, $buffer, $bytes)) {
 								$this->wsSendClientClose($clientID, self::WS_STATUS_PROTOCOL_ERROR);

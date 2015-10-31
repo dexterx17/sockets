@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>COMPARTIENDO PANTALLA</title>
+	<title>TELEOPERACION - Pantalla</title>
 	<script src="<?php echo site_url('js'); ?>/jquery-2.1.4.min.js"></script>
 	<!--<script src="<?php echo site_url('js'); ?>/fancywebsocket.js"></script>
 	<script src="<?php echo site_url('js'); ?>/socket.js"></script>-->
@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<h1>TELEOPERACION</h1>
+<h1>Compartiendo pantalla</h1>
   <!-- copy this <section> and next <script> -->
             <section class="experiment"> 
                 <!-- local/remote videos container -->

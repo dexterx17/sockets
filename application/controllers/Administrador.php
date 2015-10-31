@@ -1,10 +1,19 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * Permite administrar la conexion y los mensajes que se 
+ * transmite a traves del Socket
+ * 
+ */
 class Administrador extends CI_Controller {
 
 	var $socket;
 
+	/**
+	 * Muestra la consola del socket
+	 * @return php Vista de la consola
+	 */
 	public function index(){
 		$data=array();
 		$data['paquete']=$this->paquete->get_info();
@@ -12,21 +21,39 @@ class Administrador extends CI_Controller {
 		$this->load->view('administrador/consola',$data);
 	}
 
+	/**
+	 * Muestra una vista  para inicializar el adminstrador
+	 * del streaming de video
+	 * @return php Vista del admin de streaming video
+	 */
+	public function video(){
+		$data=array();
+		$this->load->view('administrador/admin_video',$data);
+	}
+
+	/**
+	 * Inicializa un socket en la ip y puertos especificados
+	 * 
+	 * @return TRUE Devuelve verdadero si se inicializo correctamente
+	 */
 	public function iniciar_socket(){
 		$this->socket= new PHPWebSocket();	
 		
 		$this->socket->bind('message', 'wsOnMessage');
 		$this->socket->bind('open', 'wsOnOpen');
 		$this->socket->bind('close', 'wsOnClose');     
-		$this->socket->wsStartServer('192.168.1.8',9300);
-		$this->load->view('administrador/consola');
+		return $this->socket->wsStartServer('192.168.1.8',9300);
 	}
 
-	public function video(){
-		$data=array();
-		$this->load->view('administrador/admin_video',$data);
-	}
-
+	/**
+	 * Se ejecuta cuando llega un mensaje al socket enmascarado 
+	 * de acuerdo al estandar WebSocket Protocol 07 (http://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-07)
+	 * 
+	 * @param  Integer $clientID      Identificador del cliente
+	 * @param  String $message       Mensaje
+	 * @param  Integer $messageLength Tamano del mensaje
+	 * @param  [type] $binary        [description]
+	 */
 	function wsOnMessage($clientID, $message, $messageLength, $binary) {
 	
 		$ip = long2ip($this->socket->wsClients[$clientID][6]);
@@ -53,6 +80,12 @@ class Administrador extends CI_Controller {
 			}
 	}
 
+	/**
+	 * Se ejecuta cuando un nuevo cliente se conecta al socket
+	 * 
+	 * @param  Integer $clientID Identificador del cliente
+	 * @return [type]           [description]
+	 */
 	function wsOnOpen($clientID) {
 		$ip = long2ip($this->socket->wsClients[$clientID][6]);
 		
@@ -63,6 +96,12 @@ class Administrador extends CI_Controller {
 				$this->socket->wsSend($id, json_encode(array('tipo'=>'conexion','cliente'=>$clientID ,'login_date'=>$client[3],'ip'=>$ip)));
 	}
 
+	/**
+	 * Se ejecuta cuando un cliente se desconecta del socket
+	 * 
+	 * @param  Integer $clientID Identificador del cliente
+	 * @return [type]           [description]
+	 */
 	function wsOnClose($clientID, $status) {
 
 		$ip = long2ip($this->socket->wsClients[$clientID][6]);
