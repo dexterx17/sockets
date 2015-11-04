@@ -16,7 +16,7 @@
         var res = jQuery.parseJSON(payload);
         console.log( res );
 
-
+/*
         var texto= $('.texto1').val();
         var origen= $('.origen').val();
         var destino= $('.destino').val();
@@ -24,12 +24,9 @@
         var mensaje = {'origen':origen, 'destino':destino, 'texto':texto};
 
         Server.send('message', JSON.stringify(mensaje) );
-        console.log('origen: '+res.origen+' mensaje: '+res.texto);
-        
+       // console.log('origen: '+res.origen+' mensaje: '+res.texto);
+       */
 
-
-
-      
         if(typeof res.destino==="undefined"){
 
         }
@@ -38,7 +35,7 @@
         {
         // console.log('origen: '+res.origen+' mensaje: '+res.texto);
 
-        /*switch(res.destino){
+        switch(res.destino){
           case "silla":{
            $('#silla').append('origen: '+res.origen+' mensaje: '+res.texto);
           }break;
@@ -53,7 +50,7 @@
           }break;
           
         }
-*/
+
 
         }
 

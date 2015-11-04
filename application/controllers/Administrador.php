@@ -40,9 +40,10 @@ class Administrador extends CI_Controller {
 		}
 		$msj=json_decode($message);
 
-		$this->socket->log(json_decode($msj));
+	//	$this->socket->log(json_decode($msj));
 		echo "prueba";
-		echo $message;
+		//echo $msj;
+	//	echo $message;
 	
 		
 		//The speaker is the only person in the room. Don't< let them feel lonely.

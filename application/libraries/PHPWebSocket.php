@@ -559,7 +559,8 @@ class PHPWebSocket
 			if (substr($data, 1, 1) !== false) {
 				$array = unpack('na', substr($data, 0, 2));
 				$status = $array['a'];
-				echo $array;
+				echo"Funcion wsProcessClientMessage 1";
+				//echo $array;
 				echo $data;
 			}
 			else {
@@ -584,13 +585,15 @@ class PHPWebSocket
 					$this->socket->$func($clientID, $data, $dataLength, $opcode == self::WS_OPCODE_BINARY);
 				//
 				echo $data;
-				$this->socket->log($data);
+			//	$this->socket->log($data);
+				echo"Funcion wsProcessClientMessage 2";
 					
 		}
 		else {
 			// unknown opcode
-			$this->socket->log($data);
+		//	$this->socket->log($data);
 			echo $data;
+			
 
 
 			return false;
