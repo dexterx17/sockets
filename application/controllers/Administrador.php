@@ -14,12 +14,19 @@ class Administrador extends CI_Controller {
 
 	public function iniciar_socket(){
 		$this->socket= new PHPWebSocket();	
-		
 		$this->socket->bind('message', 'wsOnMessage');
 		$this->socket->bind('open', 'wsOnOpen');
-		$this->socket->bind('close', 'wsOnClose');     
-		$this->socket->wsStartServer('192.168.0.71',9301);
+		//	$this->socket->bind('message', 'wsOnMessage');  
+		$this->socket->bind('close', 'wsOnClose');   
+			
+		$this->socket->wsStartServer('192.168.0.71',9301);    
+		
 		//$this->load->view('administrador/consola');
+	}
+
+	public function video(){
+		$data=array();
+		$this->load->view('administrador/admin_video',$data);
 	}
 
 	function wsOnMessage($clientID, $message, $messageLength, $binary) {
@@ -32,6 +39,11 @@ class Administrador extends CI_Controller {
 			return;
 		}
 		$msj=json_decode($message);
+
+		$this->socket->log(json_decode($msj));
+		echo "prueba";
+		echo $message;
+	
 		
 		//The speaker is the only person in the room. Don't< let them feel lonely.
 		if (sizeof($this->socket->wsClients) == 1)
@@ -45,6 +57,7 @@ class Administrador extends CI_Controller {
 				$this->socket->wsSend($id, json_encode($msj));
 //				$this->socket->wsSend($id, "Visitor $clientID ($ip) said \"$message\"");
 //			}
+
 			}
 	}
 
@@ -55,15 +68,18 @@ class Administrador extends CI_Controller {
 		//Send a join notice to everyone but the person who joined
 		foreach ($this->socket->wsClients as $id => $client)
 			if ($id != $clientID)
-				$this->socket->wsSend($id, json_encode(array('tipo'=>'conexion','cliente'=>$clientID ,'login_date'=>$client[3],'ip'=>$ip)));
+				//$this->socket->wsSend($id, json_encode(array('tipo'=>'conexion','cliente'=>$clientID ,'login_date'=>$client[3],'ip'=>$ip)));
+			$this->socket->wsSend($id, json_encode(array('tipo'=>'conexion','cliente'=>$clientID ,'login_date'=>$client[3],'ip'=>$ip)));
 	}
+
+
 
 	function wsOnClose($clientID, $status) {
 
 		$ip = long2ip($this->socket->wsClients[$clientID][6]);
-	
+		//	echo ("llega");
 		$this->socket->log("$ip ($clientID) has disconnected.");
-
+		//$this->socket->log(json_encode($msj));
 		//Send a user left notice to everyone in the room
 		foreach ($this->socket->wsClients as $id => $client)
 			$this->socket->wsSend($id, json_encode(array('tipo'=>'desconexion','cliente'=>$clientID ,'login_date'=>$client[3],'ip'=>$ip)));

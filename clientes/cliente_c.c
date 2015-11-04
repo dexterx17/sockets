@@ -49,10 +49,21 @@ int main(int argc, char *argv[])
        return 1;
     } 
 
+    bzero(recvBuff,1024);	
+        printf("este es el que jode %c valor %d \n",recvBuff[0],recvBuff[0]);
+	
+
     while ( (n = read(sockfd, recvBuff, sizeof(recvBuff)-1)) > 0)
-    {
-        printf("\n N: %i", n);
-        printf("\n buf:%s", recvBuff);
+     {
+	        
+	printf("\n N: %i", n);
+
+	printf("este es el que jode %c valor %d \n",recvBuff[0],recvBuff[0]);
+
+        memcpy(recvBuff,&recvBuff[1],strlen(recvBuff)-1);
+	recvBuff[strlen(recvBuff)-1]='\0';
+	
+	printf("\n buf:%s \n", recvBuff);
 
      //   recvBuff[n] = 0;
         /*if(fputs(recvBuff, stdout) == EOF)

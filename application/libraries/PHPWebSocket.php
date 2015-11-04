@@ -14,7 +14,7 @@
 */
 
 
-class PHPWebSocket
+class PHPWebSocket 
 {
 	// maximum amount of clients that can be connected at one time
 	const WS_MAX_CLIENTS = 100;
@@ -273,7 +273,7 @@ class PHPWebSocket
 		// decrease amount of clients connected on this client's IP
 		$clientIP = $this->wsClients[$clientID][6];
 		if ($this->wsClientIPCount[$clientIP] > 1) {
-			$this->wsClientIPCount[$clientIP]--;
+			$this->wsClientIPCount[$clientIP]--; 
 		}
 		else {
 			unset($this->wsClientIPCount[$clientIP]);
@@ -544,6 +544,9 @@ class PHPWebSocket
 		if ($opcode == self::WS_OPCODE_PING) {
 			// received ping message
 			return $this->wsSendClientMessage($clientID, self::WS_OPCODE_PONG, $data);
+	//$this->socket->log($data);
+
+
 		}
 		elseif ($opcode == self::WS_OPCODE_PONG) {
 			// received pong message (it's valid if the server did not send a ping request for this pong message)
@@ -556,6 +559,8 @@ class PHPWebSocket
 			if (substr($data, 1, 1) !== false) {
 				$array = unpack('na', substr($data, 0, 2));
 				$status = $array['a'];
+				echo $array;
+				echo $data;
 			}
 			else {
 				$status = false;
@@ -577,13 +582,24 @@ class PHPWebSocket
 			if ( array_key_exists('message', $this->wsOnEvents) )
 				foreach ( $this->wsOnEvents['message'] as $func )
 					$this->socket->$func($clientID, $data, $dataLength, $opcode == self::WS_OPCODE_BINARY);
+				//
+				echo $data;
+				$this->socket->log($data);
+					
 		}
 		else {
 			// unknown opcode
+			$this->socket->log($data);
+			echo $data;
+
+
 			return false;
 		}
 
 		return true;
+
+					//$this->socket->log($data);
+
 	}
 	function wsProcessClientHandshake($clientID, &$buffer) {
 		// fetch headers and request line
