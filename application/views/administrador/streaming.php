@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>CONSOLA DE SOCKETS</title>
+	<title>TELEOPERACION - Streaming Video</title>
 	<script src="<?php echo site_url('js'); ?>/jquery-2.1.4.min.js"></script>
 	<!--<script src="<?php echo site_url('js'); ?>/fancywebsocket.js"></script>
 	<script src="<?php echo site_url('js'); ?>/socket.js"></script>-->
@@ -16,12 +16,10 @@
 
 </head>
 <body>
-<h1>TELEOPERACION</h1>
-  <!-- copy this <section> and next <script> -->
-            <section class="experiment"> 
-                <!-- local/remote videos container -->
-                <div id="videos-container"></div>
-            </section>
+	<h1>Streaming</h1>
+    <section class="experiment"> 
+        <div id="videos-container"></div>
+    </section>
 	<script src="<?php echo site_url('js'); ?>/streaming.js" type="text/javascript"></script>
 </body>
 </html>

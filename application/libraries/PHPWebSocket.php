@@ -138,7 +138,6 @@ class PHPWebSocket
 						// client socket changed
 						$buffer = '';
 						$bytes = @socket_recv($socket, $buffer, 4096, 0);
-
 						if ($bytes === false) {
 							// error on recv, remove client socket (will check to send close frame)
 							$this->wsSendClientClose($clientID, self::WS_STATUS_PROTOCOL_ERROR);
@@ -559,7 +558,7 @@ class PHPWebSocket
 			if (substr($data, 1, 1) !== false) {
 				$array = unpack('na', substr($data, 0, 2));
 				$status = $array['a'];
-				echo"Funcion wsProcessClientMessage 1";
+			//	echo"Funcion wsProcessClientMessage 1";
 				//echo $array;
 				echo $data;
 			}
@@ -586,7 +585,7 @@ class PHPWebSocket
 				//
 				echo $data;
 			//	$this->socket->log($data);
-				echo"Funcion wsProcessClientMessage 2";
+				//echo"Funcion wsProcessClientMessage 2";
 					
 		}
 		else {
