@@ -86,12 +86,13 @@ class PHPWebSocket
 			9 => string    FrameBuffer,                       // joined onto end as a frame's data comes in, reset to blank string when all frame data has been read
 			10 => integer  MessageOpcode,                     // stored by the first frame for fragmented messages, default value is 0
 			11 => integer  MessageBufferLength                // the payload data length of MessageBuffer
+			12 => string   tipo     						  // Tipo de cliente			
 		)
 
 		$wsRead[ integer ClientID ] = resource Socket         // this one-dimensional array is used for socket_select()
 															  // $wsRead[ 0 ] is the socket listening for incoming client connections
 
-		$wsClientCount = integer ClientCount                  // amount of clients currently connected
+		$wsClientCount = integer ClientCou0nt                  // amount of clients currently connected
 
 		$wsClientIPCount[ integer IP ] = integer ClientCount  // amount of clients connected per IP v4 address
 	*/
@@ -253,7 +254,7 @@ class PHPWebSocket
 		$clientID = $this->wsGetNextClientID();
 
 		// store initial client data
-		$this->wsClients[$clientID] = array($socket, '', self::WS_READY_STATE_CONNECTING, time(), false, 0, $clientIP, false, 0, '', 0, 0);
+		$this->wsClients[$clientID] = array($socket, '', self::WS_READY_STATE_CONNECTING, time(), false, 0, $clientIP, false, 0, '', 0, 0,'');
 		
 		// store socket - used for socket_select()
 		$this->wsRead[$clientID] = $socket;
@@ -669,6 +670,7 @@ class PHPWebSocket
 			$left -= $sent;
 			if ($sent > 0) $headers = substr($headers, $sent);
 		}
+		
 		while ($left > 0);
 
 		return true;

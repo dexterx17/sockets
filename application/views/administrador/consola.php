@@ -11,7 +11,6 @@
     <!-- Bootstrap -->
     <link href="<?php echo site_url('css'); ?>/bootstrap.min.css" rel="stylesheet">
 
-
 	 <!-- Video -->
 		<script src="<?php echo site_url('js'); ?>/firebase.js"></script>
 	<script src="<?php echo site_url('js'); ?>/RTCPeerConnection-v1.5.js"></script>
@@ -47,8 +46,6 @@
 <div class="row text-center" id = "cliente" class ="row">
 
 </div>
-
-
 
 <div class="row" >
 	<div class="col-lg-6">
@@ -94,7 +91,6 @@
 		</div>
 	</div>
 </div>
-
 
 <div class="row">
 	<div class="col-lg-6">

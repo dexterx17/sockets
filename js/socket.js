@@ -1,6 +1,6 @@
   $(document).ready(function() {
       console.log('Connecting...');
-      Server = new FancyWebSocket('ws://192.168.0.71:9300');
+      Server = new FancyWebSocket('ws://190.15.141.99:8180');
 
 
       //Let the user know we're connected
@@ -9,6 +9,7 @@
       });
       //OH NOES! Disconnection occurred.
       Server.bind('close', function( data ) {
+     //   alert(data);
         console.log( "Disconnected." );
       });
       //console.log any messages sent from server
@@ -16,25 +17,25 @@
         var res = jQuery.parseJSON(payload);
         console.log( res );
 
-//ERROR: "TypeError: "#cliente".html is not a function"
-     /*   if(typeof res.destino==="undefined"){
-          var $cliente = $('#cliente').html();
-     
-          if (res.destino ==="silla"){
-            $('#silla').append('origen: '+res.origen+' mensaje: '+res.texto);
-          }
-
-           //  if ($cliente ===res.destino){
-            //$('#cliente').append('origen: '+res.origen+' mensaje: '+res.texto);
-         // }
-
-
-        }*/
-
-        //
-
          if(typeof res.destino==="undefined"){
-          //
+           switch(res.cliente){
+              case "silla":{
+               $('#silla').addClass('active');
+              // $('#silla').height('200px');
+                
+              }break;
+              case "falcon":{
+               
+                
+              }break;
+              case "brazo":{
+               
+              }break;
+            case "admin":{
+               
+              }break;
+              
+            }
         }else
         {
         switch(res.destino){
@@ -69,15 +70,9 @@
 
       }
 
-         if(typeof res.tipo==="undefined"){
+         if(typeof res.tipo==="desconexion"){
           //
         }
-
-
-
-
-
-        
 
        
       });
@@ -169,13 +164,14 @@ $('.seleccionar').click(function(){
 
 
       function enviar_mensaje(array){
+
         Server.send('message', JSON.stringify(array) );
 
       }
 
-      
+      //almacenamiento Clientes conectados
+
 
 
 
 });
- 
