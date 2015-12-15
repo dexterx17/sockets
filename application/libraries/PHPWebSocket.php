@@ -92,7 +92,7 @@ class PHPWebSocket
 		$wsRead[ integer ClientID ] = resource Socket         // this one-dimensional array is used for socket_select()
 															  // $wsRead[ 0 ] is the socket listening for incoming client connections
 
-		$wsClientCount = integer ClientCou0nt                  // amount of clients currently connected
+		$wsClientCount = integer ClientCount                  // amount of clients currently connected
 
 		$wsClientIPCount[ integer IP ] = integer ClientCount  // amount of clients connected per IP v4 address
 	*/

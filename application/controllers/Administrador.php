@@ -19,7 +19,7 @@ class Administrador extends CI_Controller {
 		$data=array();
 		$data['paquete']=$this->paquete->get_info();
 
-		$this->load->view('administrador/consola',$data);
+		$this->load->view('administrador/teleoperacion',$data);
 	}
 
 	/**
@@ -43,7 +43,18 @@ class Administrador extends CI_Controller {
 		$this->socket->bind('message', 'wsOnMessage');
 		$this->socket->bind('open', 'wsOnOpen');
 		$this->socket->bind('close', 'wsOnClose');     
-		return $this->socket->wsStartServer('190.15.141.99',8180);
+		return $this->socket->wsStartServer('192.168.0.23',9300);
+		
+
+	}
+		public function iniciar_socket1(){
+		$this->socket= new PHPWebSocket();	
+		
+		$this->socket->bind('message', 'wsOnMessage');
+		$this->socket->bind('open', 'wsOnOpen');
+		$this->socket->bind('close', 'wsOnClose');     
+		return $this->socket->wsStartServer('192.168.0.23',9301);
+		
 
 	}
 
@@ -71,15 +82,20 @@ class Administrador extends CI_Controller {
 			$this->socket->wsClose($clientID);
 			return;
 		}
-
+		//print_r($message);
 		$msj=json_decode($message);
 		//$this->socket->log($msj);
 		//echo "prueba";
+		//print_r("hhh");
 		print_r($msj);
-		
+		//ViewData["interface"]=$msj->interface;
+
+
 		//Si es un mensaje tipo {'cliente':'admin'} seteo la posicion 12 
 		if (isset($msj->cliente)){
-			print_r($this->socket->wsClients[$clientID]);
+
+			//print_r($this->socket->wsClients[$clientID]);
+			
 			$this->socket->wsClients[$clientID][12] = $msj->cliente;
 		}
 		
@@ -87,38 +103,34 @@ class Administrador extends CI_Controller {
 		foreach ($this->socket->wsClients as $id => $client){
 			//verifico si ya tienen definido un tipo en la posicion 12
 			if(isset($client[12])){
-				//Si esta definido el destino ({'origen':'admin','destino':'silla','texto':'mensake'})
+				//Si esta definido el destino ({'origen':'admin','destino':'silla','texto':'mensaje'})
 				if(isset($msj->destino)){
 					//como si sabemos que tipo de cliente es verificamos si el mensaje es para el
 					if($client[12]==$msj->destino){
 						//enviamos solo al cliente destino
 						$this->socket->wsSend($id, json_encode($msj));
 					}
+					//Reenvio en mensaje al mismo cliente que envio
+					//si es diferente de servidor no retorna
+					if(($msj->destino!="servidor")){
+						if($client[12]==$msj->origen){
+						//enviamos solo al cliente destino
+						$this->socket->wsSend($id, json_encode($msj));
+					}	
+					}
+
+					
+
+
 				}else{
 					$this->socket->wsSend($id, json_encode($msj));
 				}
 			}
-			$this->socket->log("$ip ($clientID) se guardo");
+	 	//	$this->socket->log("$ip ($clientID) se guardo");
 		}
 
+		//return View();
 
-
-/*
-		//The speaker is the only person in the room. Don't< let them feel lonely.
-		if (sizeof($this->socket->wsClients) == 1)
-			//$this->wsSend($clientID, json_encode($activity));
-			$this->socket->wsSend($clientID, json_encode($msj));
-//		$this->socket->wsSend($clientID, "There isn't anyone else in the room, but I'll still listen to you. --Your Trusty Server");
-		else
-		//Send the msj to everyone but the person who said it
-			foreach ($this->socket->wsClients as $id => $client) {
-			if ( $id != $clientID ){
-				$this->socket->wsSend($id, json_encode($msj));
-//				$this->socket->wsSend($id, "Visitor $clientID ($ip) said \"$message\"");
-			}
-		}
-
-*/
 	}
 
 	/**
@@ -145,6 +157,7 @@ class Administrador extends CI_Controller {
 		foreach ($this->socket->wsClients as $id => $client)
 			if ($id != $clientID)
 				$this->socket->wsSend($id, json_encode(array('tipo'=>'conexion','cliente'=>$clientID ,'login_date'=>$client[3],'ip'=>$ip)));
+
 	}
 
 

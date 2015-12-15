@@ -16,11 +16,18 @@
 	<script src="<?php echo site_url('js'); ?>/RTCPeerConnection-v1.5.js"></script>
 	<script src="<?php echo site_url('js'); ?>/broadcast.js"></script>
 	<script src="<?php echo site_url('js'); ?>/DetectRTC.js"></script>
+	<style type="text/css">
+body{
+	//background-image: url("fondo.jpg");
+}
+</style>
+
 
 </head>
-<body>
-<h1>TELEOPERACION</h1>
-
+<body  >
+<h1><center><b>TELEOPERACIÓN BILATERAL DE MÚLTIPLES MANIPULADORES MÓVILES</b></center></h1>
+	<br>	
+	<br>	
 <div class="row text-center" >	
 	<div class="panel panel-default">
 			<div class="panel-heading">
@@ -39,13 +46,13 @@
 	<button type="button" class="button">Enviar</button>
 
 </div>
-
 </div>
 </div>
 
 <div class="row text-center" id = "cliente" class ="row">
 
 </div>
+<br>	
 
 <div class="row" >
 	<div class="col-lg-6">
@@ -69,6 +76,8 @@
 		</div>
 	</div>
 </div>
+<br>	
+
 <div class="row">
 	<div class="col-lg-6">
 		<div class="panel panel-default">
@@ -91,6 +100,7 @@
 		</div>
 	</div>
 </div>
+<br>	
 
 <div class="row">
 	<div class="col-lg-6">
@@ -108,6 +118,18 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class="col-lg-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Consola
+			</div>
+			<div class="panel-body" id='consola'>	
+			
+			</div>
+		</div>
+	</div>
+</div>
 
 </body>
 </html>

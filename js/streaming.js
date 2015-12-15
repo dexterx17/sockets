@@ -31,7 +31,7 @@
                     },
                     onRoomFound: function(room) {
                           setTimeout(function(){
-                           joinRoom(room);
+                           joinRoom(room);0
                           },2000);
                     },
                     onNewParticipant: function(numberOfViewers) {

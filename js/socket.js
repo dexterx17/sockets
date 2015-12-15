@@ -1,43 +1,112 @@
   $(document).ready(function() {
       console.log('Connecting...');
-      Server = new FancyWebSocket('ws://190.15.141.99:8180');
+      Server = new FancyWebSocket('ws://192.168.0.23:9300');
 
 
       //Let the user know we're connected
       Server.bind('open', function() {
         console.log( "Connected." );
+
       });
       //OH NOES! Disconnection occurred.
       Server.bind('close', function( data ) {
      //   alert(data);
+
+      
         console.log( "Disconnected." );
       });
+
+
       //console.log any messages sent from server
       Server.bind('message', function( payload ) {
         var res = jQuery.parseJSON(payload);
         console.log( res );
+        //console.log(res.ip);
+       
 
+        if( res.cliente==="controlador"){    
+              
+        $('#cliente').parent().addClass('panel-success');
+        $('#cliente').append(res.cliente );
+        
+        $('#ip').append(res.ip);
+         $('#estado').append(res.tipo);
+        if (res.destino==="servidor") {
+          $('#tiempo').append(res.texto);            
+
+          }
+
+
+
+      }
+
+        if( res.cliente==="silla"){    
+        $('#cliente1').append( res.cliente );
+        $('#ip1').append(res.ip);
+         $('#estado1').append(res.tipo);
+
+          if (res.destino==="servidor") {
+          $('#tiempo1').append(res.texto);            
+
+          }
+
+
+        }
+      
+
+        if(typeof res.monitor!="undefined")
+        for (var i = 0; i < res.monitor.length; i++) {
+          var item = res.monitor[i];
+          //console.log(item.interfaz);
+
+          switch(item.interfaz){
+            case "silla":{
+              $('#silla').parent().addClass('panel-success');
+              $('#txtsilla').append(item.interfaz);
+              $('#txtEstadoSilla').append(item.commandstatus);
+            }
+
+            //break;
+            case "ttys":{
+              $('#ttys').append(item.interfaz);
+              $('#estadoT').append(item.commandstatus);
+
+            }
+            //break;
+             case "video":{
+             $('#video').append(item.interfaz);
+             $('#estadoV').append(item.commandstatus);
+             
+            }
+            break;
+
+          }
+        }
+        
+/*Interfaz, resultado comandstatus
          if(typeof res.destino==="undefined"){
            switch(res.cliente){
               case "silla":{
-               $('#silla').addClass('active');
+      //         $('#silla').addClass('active');
               // $('#silla').height('200px');
-                
+                //$('#silla').append('origen: '+res.origen+' mensaje: '+res.texto);
               }break;
               case "falcon":{
-               
+             //   $('#falcon').addClass('active');
                 
               }break;
               case "brazo":{
+            //     $('#brazo').addClass('active');
                
               }break;
             case "admin":{
-               
+
+              //  $('#admin').addClass('active');
               }break;
               
             }
-        }else
-        {
+
+        }else{
         switch(res.destino){
           case "silla":{
            $('#silla').append('origen: '+res.origen+' mensaje: '+res.texto);
@@ -70,10 +139,10 @@
 
       }
 
-         if(typeof res.tipo==="desconexion"){
+         /*if(typeof res.tipo==="desconexion"){
           //
         }
-
+*/
        
       });
 
