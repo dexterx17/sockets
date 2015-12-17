@@ -7,6 +7,12 @@
       Server.bind('open', function() {
         console.log( "Connected." );
 
+
+        var mensaje = {'cliente':dashboard};
+
+        Server.send('message', JSON.stringify(mensaje) );
+
+
       });
       //OH NOES! Disconnection occurred.
       Server.bind('close', function( data ) {

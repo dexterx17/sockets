@@ -109,9 +109,7 @@ class Administrador extends CI_Controller {
 
 					//envio ({'origen':'admin','destino':'silla','texto':'mensaje'})
 				/*
-					foreach ($this->socket->wsClients as $id => $client)
-					if ($id != $clientID)
-					$this->socket->wsSend($id,json_encode($msj));
+			
 */
 
 					//como si sabemos que tipo de cliente es verificamos si el mensaje es para el
@@ -138,8 +136,6 @@ class Administrador extends CI_Controller {
 					}
 
 */
-					
-
 
 				}else{
 					$this->socket->wsSend($id, json_encode($msj));
@@ -149,6 +145,10 @@ class Administrador extends CI_Controller {
 		}
 
 		//return View();
+
+				foreach ($this->socket->wsClients as $id => $client)
+					if ($id != $clientID)
+					$this->socket->wsSend($id,json_encode($msj));
 
 	}
 
