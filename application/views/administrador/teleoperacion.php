@@ -33,7 +33,8 @@ body{
 	<div class="panel panel-default">
 			<div class="panel-heading">
 				<p><b>Información General</b></p>
-					
+
+
 					<div class="row" >
 						<div class="col-lg-2">
 						<div class="panel panel-default">
@@ -45,6 +46,8 @@ body{
 						</div>
 					</div>
 				</div>
+			
+
 
 				<div class="row">
 				<div class="col-lg-2">
@@ -152,7 +155,10 @@ body{
 			</div>
 		</div>
 	</div>
-</div>
+
+
+
+
 
 <br>
 <br>
@@ -176,9 +182,17 @@ body{
 		value="" placeholder="Estado TTY " class="estadoT"></text>	</TD>
 
 	</TR>
+<br>
 	<TR>
-		<TD>Silla</TD> <TD><input type=" text" id='txtsilla' name="txtsilla" value="" placeholder="Silla " class="txtsilla"></text></TD>  <TD>Estado</TD> <TD><input type=" text" name="txtEstadoSilla" id ='txtEstadoSilla' value="" placeholder="Estado Silla" class="txtEstadoSilla"></text>	</TD>
+		<TD>TTYS Video</TD> <TD><input type=" text" name="dev/video" id ='dev/video' value="" placeholder="ttys video" class="dev/video"></text></TD>  <TD>Estado</TD> <TD><input type=" text" name="estadoVideo" id = 'estadoVideo'
+		value="" placeholder="Estado TTY Video" class="estadoVideo"></text>	</TD>
+
 	</TR>
+
+	<TR>
+		<TD>Silla</TD> <TD><input type=" text" id='txtsilla' name="txtsilla" value="5" placeholder="Silla " class="txtsilla"></text></TD>  <TD>Estado</TD> <TD><input type=" text" name="txtEstadoSilla" id ='txtEstadoSilla' value="" placeholder="Estado Silla" class="txtEstadoSilla"></text>	</TD>
+	</TR>
+
 		<TR>
 		<TD>Video</TD> <TD><input type=" text" id = 'video' name="video" value="" placeholder="Video " class="video"></text></TD>  <TD>Estado</TD> <TD><input type=" text" name="estadoV" value="" placeholder="Estado Video" class="estadoV"></text>	</TD>
 	</TR>

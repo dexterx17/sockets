@@ -22,34 +22,67 @@
         var res = jQuery.parseJSON(payload);
         console.log( res );
         //console.log(res.ip);
-       
+      //  alert(res.texto);
 
         if( res.cliente==="controlador"){    
-              
+          $('#cliente').html('');    
         $('#cliente').parent().addClass('panel-success');
         $('#cliente').append(res.cliente );
-        
-        $('#ip').append(res.ip);
-         $('#estado').append(res.tipo);
-        if (res.destino==="servidor") {
-          $('#tiempo').append(res.texto);            
-
-          }
-
-
-
+      }
+           if( res.cliente==="silla"){    
+          $('#cliente1').html('');    
+        $('#cliente1').parent().addClass('panel-success');
+        $('#cliente1').append(res.cliente );
       }
 
+
+
+        if (res.destino==="servidor") {
+          $('#tiempo').html('');
+          $('#tiempo').parent().addClass('panel-success');
+          $('#tiempo').append(res.texto);            
+
+         
+      }
+
+
+       if(res.tipo==="conexion")  {
+
+        $('#ip').parent().addClass('panel-success');
+        $('#estado').parent().addClass('panel-success');
+         $('#ip').html('');
+         $('#estado').html('');
+        $('#ip').append(res.ip);
+         $('#estado').append(res.tipo);
+         }
+
+    //
+        if ((res.destino ==="silla") &&  (res.origen==="controlador")) {
+            $('#datos').html('');
+           $('#datos').parent().addClass('panel-success');
+           $('#datos').append(res.texto);
+   
+         }      
+
+
+          if ((res.destino ==="controlador") &&  (res.origen==="silla")) {
+           $('#datos1').parent().addClass('panel-success');
+           $('#datos1').append(res.texto);
+   
+         }      
+
+
+        if (res.tipo==="desconexion"){
+           $('#estado').html(''); 
+        $('#estado').append(res.tipo);
+        }
+
+
         if( res.cliente==="silla"){    
+        $('#cliente1').html('');
         $('#cliente1').append( res.cliente );
         $('#ip1').append(res.ip);
          $('#estado1').append(res.tipo);
-
-          if (res.destino==="servidor") {
-          $('#tiempo1').append(res.texto);            
-
-          }
-
 
         }
       
@@ -67,7 +100,7 @@
             }
 
             //break;
-            case "ttys":{
+            case "dev/ttys":{
               $('#ttys').append(item.interfaz);
               $('#estadoT').append(item.commandstatus);
 
@@ -79,10 +112,15 @@
              
             }
             break;
+            case "dev/video":{
+            $('#dev/video').append(item.interfaz);
+            $('#estadoVideo').append(item.commandstatus);
+            }
 
           }
         }
         
+
 /*Interfaz, resultado comandstatus
          if(typeof res.destino==="undefined"){
            switch(res.cliente){
@@ -239,7 +277,6 @@ $('.seleccionar').click(function(){
       }
 
       //almacenamiento Clientes conectados
-
 
 
 

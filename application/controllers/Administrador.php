@@ -105,6 +105,15 @@ class Administrador extends CI_Controller {
 			if(isset($client[12])){
 				//Si esta definido el destino ({'origen':'admin','destino':'silla','texto':'mensaje'})
 				if(isset($msj->destino)){
+					
+
+					//envio ({'origen':'admin','destino':'silla','texto':'mensaje'})
+				/*
+					foreach ($this->socket->wsClients as $id => $client)
+					if ($id != $clientID)
+					$this->socket->wsSend($id,json_encode($msj));
+*/
+
 					//como si sabemos que tipo de cliente es verificamos si el mensaje es para el
 					if($client[12]==$msj->destino){
 						//enviamos solo al cliente destino
@@ -112,13 +121,23 @@ class Administrador extends CI_Controller {
 					}
 					//Reenvio en mensaje al mismo cliente que envio
 					//si es diferente de servidor no retorna
+
+					/*
 					if(($msj->destino!="servidor")){
 						if($client[12]==$msj->origen){
 						//enviamos solo al cliente destino
 						$this->socket->wsSend($id, json_encode($msj));
-					}	
+						}	
 					}
 
+						if(($msj->destino==="servidor")){
+						if($client[12]==$msj->origen){
+						//enviamos solo al cliente destino
+						$this->socket->wsSend($id, json_encode($msj));
+						}	
+					}
+
+*/
 					
 
 
