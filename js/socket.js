@@ -6,14 +6,12 @@
       //Let the user know we're connected
       Server.bind('open', function() {
         console.log( "Connected." );
-
-
-        var mensaje = {'cliente':dashboard};
-
+      var mensaje = {'cliente':'php'};
         Server.send('message', JSON.stringify(mensaje) );
 
-
       });
+
+
       //OH NOES! Disconnection occurred.
       Server.bind('close', function( data ) {
      //   alert(data);
@@ -26,6 +24,8 @@
       //console.log any messages sent from server
       Server.bind('message', function( payload ) {
         var res = jQuery.parseJSON(payload);
+
+
         console.log( res );
         //console.log(res.ip);
       //  alert(res.texto);
@@ -40,7 +40,6 @@
         $('#cliente1').parent().addClass('panel-success');
         $('#cliente1').append(res.cliente );
       }
-
 
 
         if (res.destino==="servidor") {

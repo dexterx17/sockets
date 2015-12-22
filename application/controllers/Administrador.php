@@ -55,7 +55,6 @@ class Administrador extends CI_Controller {
 		$this->socket->bind('close', 'wsOnClose');     
 		return $this->socket->wsStartServer('192.168.0.23',9301);
 		
-
 	}
 
 	/**
@@ -74,8 +73,7 @@ class Administrador extends CI_Controller {
 
 		$ip = long2ip($this->socket->wsClients[$clientID][6]);		
 	
-		$this->socket->log("$ip ($clientID) send to message.");	
-
+	//	$this->socket->log("$ip ($clientID) send to message.");	
 
 		// check if message length is 0
 		if ($messageLength == 0) {
@@ -85,11 +83,7 @@ class Administrador extends CI_Controller {
 		//print_r($message);
 		$msj=json_decode($message);
 		//$this->socket->log($msj);
-		//echo "prueba";
-		//print_r("hhh");
 		print_r($msj);
-		//ViewData["interface"]=$msj->interface;
-
 
 		//Si es un mensaje tipo {'cliente':'admin'} seteo la posicion 12 
 		if (isset($msj->cliente)){
@@ -98,20 +92,13 @@ class Administrador extends CI_Controller {
 			
 			$this->socket->wsClients[$clientID][12] = $msj->cliente;
 		}
-		
-		//recorro todos los clientes
+	
+
 		foreach ($this->socket->wsClients as $id => $client){
 			//verifico si ya tienen definido un tipo en la posicion 12
 			if(isset($client[12])){
 				//Si esta definido el destino ({'origen':'admin','destino':'silla','texto':'mensaje'})
 				if(isset($msj->destino)){
-					
-
-					//envio ({'origen':'admin','destino':'silla','texto':'mensaje'})
-				/*
-			
-*/
-
 					//como si sabemos que tipo de cliente es verificamos si el mensaje es para el
 					if($client[12]==$msj->destino){
 						//enviamos solo al cliente destino
@@ -119,24 +106,13 @@ class Administrador extends CI_Controller {
 					}
 					//Reenvio en mensaje al mismo cliente que envio
 					//si es diferente de servidor no retorna
-
-					/*
 					if(($msj->destino!="servidor")){
 						if($client[12]==$msj->origen){
 						//enviamos solo al cliente destino
 						$this->socket->wsSend($id, json_encode($msj));
-						}	
+					}	
 					}
-
-						if(($msj->destino==="servidor")){
-						if($client[12]==$msj->origen){
-						//enviamos solo al cliente destino
-						$this->socket->wsSend($id, json_encode($msj));
-						}	
-					}
-
-*/
-
+					
 				}else{
 					$this->socket->wsSend($id, json_encode($msj));
 				}
@@ -144,13 +120,12 @@ class Administrador extends CI_Controller {
 	 	//	$this->socket->log("$ip ($clientID) se guardo");
 		}
 
-		//return View();
-
-				foreach ($this->socket->wsClients as $id => $client)
-					if ($id != $clientID)
-					$this->socket->wsSend($id,json_encode($msj));
-
+		 
 	}
+
+		
+
+	
 
 	/**
 	 * Se ejecuta cuando un nuevo cliente se conecta al socket
@@ -200,4 +175,5 @@ class Administrador extends CI_Controller {
 		foreach ($this->socket->wsClients as $id => $client)
 			$this->socket->wsSend($id, json_encode(array('tipo'=>'desconexion','cliente'=>$clientID ,'login_date'=>$client[3],'ip'=>$ip)));
 	}
+
 }
