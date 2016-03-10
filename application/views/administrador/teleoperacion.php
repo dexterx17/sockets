@@ -10,21 +10,30 @@
 
     <!-- Bootstrap -->
     <link href="<?php echo site_url('css'); ?>/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="canonical" href="http://themes.getbootstrap.com/products/dashboard" >
 	 <!-- Video -->
 		<script src="<?php echo site_url('js'); ?>/firebase.js"></script>
 	<script src="<?php echo site_url('js'); ?>/RTCPeerConnection-v1.5.js"></script>
 	<script src="<?php echo site_url('js'); ?>/broadcast.js"></script>
 	<script src="<?php echo site_url('js'); ?>/DetectRTC.js"></script>
-	<style type="text/css">
-body{
-	//background-image: url("fondo.jpg");
-}
-</style>
 
+
+<script language="JavaScript">
+
+function ventanaNueva(documento){	
+	window.open(documento,'nuevaVentana','width=500, height=500');
+}
+
+function grafica(documento){	
+	window.open(documento,'nuevaVentana','width=1000, height=1000');
+}
+
+</script>
 
 </head>
-<body  >
+
+<body >
+
 <h1><center><b>TELEOPERACIÓN BILATERAL DE MÚLTIPLES MANIPULADORES MÓVILES</b></center></h1>
 	<br>	
 	<br>	
@@ -32,7 +41,7 @@ body{
 <div class="row text-center" >	
 	<div class="panel panel-default">
 			<div class="panel-heading">
-				<p><b>Información General</b></p>
+				<p><b>Datos Controlador</b></p>
 
 
 					<div class="row" >
@@ -73,21 +82,23 @@ body{
 			</div>
 
 
-			<div class="col-lg-2">
+
+
+				<div class="col-lg-3">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Dirección 	IP
+						 	Datos Motores
 					</div>
-					<div class="panel-body" id='ip'>	
+					<div class="panel-body" id='motor'>	
 					
 					</div>
 				</div>
 			</div>
 
-				<div class="col-lg-3">
+						<div class="col-lg-2">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						 	Tiempo
+						Tiempo Respuesta
 					</div>
 					<div class="panel-body" id='tiempo'>	
 					
@@ -95,23 +106,40 @@ body{
 				</div>
 			</div>
 
-<br>
-			<div class="row" >
-				<div class="col-lg-2">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							Cliente Conectado
-						</div>
-						<div class="panel-body" id='cliente1'>	
-						
+
+
+		</div>
+	</div>
+</div>
+
+
+
+
+<div class="row text-center" >	
+	<div class="panel panel-default">
+			<div class="panel-heading">
+				<p><b>Datos Plataforma</b></p>
+
+
+					<div class="row" >
+						<div class="col-lg-2">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								Cliente Conectado
+							</div>
+							<div class="panel-body" id='cliente1'>	
+				
 						</div>
 					</div>
 				</div>
+			
 
-					<div class="col-lg-2">
+
+				<div class="row">
+				<div class="col-lg-2">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							 	Datos
+							Datos
 						</div>
 						<div class="panel-body" id='datos1'>	
 						
@@ -119,42 +147,107 @@ body{
 					</div>
 				</div>
 
-					<div class="col-lg-2">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									Estado
-								</div>
-								<div class="panel-body" id='estado1'>	
-								
-								</div>
-							</div>
-						</div>
-
-
-							<div class="col-lg-2">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										Dirección 	IP
-									</div>
-									<div class="panel-body" id='ip1'>	
-									
-									</div>
-								</div>
-							</div>
-									<div class="col-lg-3">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										 	Tiempo
-									</div>
-									<div class="panel-body" id='tiempo1'>	
-									
-									</div>
-								</div>
-							</div>
-						</div>
+			<div class="col-lg-2">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Estado
+					</div>
+					<div class="panel-body" id='estado1'>	
+					
+					</div>
+				</div>
 			</div>
+
+
+
+				<div class="col-lg-3">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						 	Datos Motores
+					</div>
+					<div class="panel-body" id='motor1'>	
+					
+					</div>
+				</div>
+			</div>
+
+						<div class="col-lg-2">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Tiempo Respuesta
+					</div>
+					<div class="panel-body" id='tiempo'>	
+					
+					</div>
+				</div>
+			</div>
+
+
 		</div>
 	</div>
+</div>
+
+
+<div class="row text-center" >	
+	<div class="panel panel-default">
+			<div class="panel-heading">
+				<p><b>Estado Dispositivos</b></p>
+
+		<div class="col-lg-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						 	Datos 
+					</div>
+					<div class="panel-body" id='dispositivos'>	
+					Plataforma    <center><input type="text" name="interfaz1" id ='interfaz1'>  <input type="text" name="resultado1" id ='resultado1'>  <input type="text" name="status1" id ='status1'> </center>
+							
+				
+				Proceso Plataforma <center>        <input type="text" name="interfaz" id ='interfaz'>  <input type="text" name="resultado" id ='resultado'>  <input type="text" name="status" id ='status'></center>
+				  
+				<br>	
+				<br>	
+					
+				Video     <center>  <input type="text" name="interfaz2" id ='interfaz2'>  <input type="text" name="resultado2" id ='resultado2'>  <input type="text" name="status2" id ='status2'> </center>
+				
+				
+				Proceso Video    <center><input type="text" name="interfaz3" id ='interfaz3'>  <input type="text" name="resultado3" id ='resultado3'>  <input type="text" name="status3" id ='status3'> </center>
+
+
+
+					
+					</div>
+				</div>
+			</div>
+				
+
+<div class="row">
+				<div class="col-lg-5">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							Streaming
+
+				
+					
+						</div>
+						<div class="panel-body" id='streaming'>	
+						<section class="experiment"> 
+			        <div id="videos-container"></div>
+			    </section>
+				<script src="<?php echo site_url('js'); ?>/streaming.js" type="text/javascript"></script>
+				
+						</div>
+					</div>
+				</div>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+
+
 
 
 
@@ -169,37 +262,12 @@ body{
 			<p><b>Control Clientes </b></p>
 				
 	<div class="row" >
-	<div class="col-lg-6">
+	<div class="col-lg-8" >
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				Silla
+				Datos de Consola
 			</div>
-			<div class="panel-body" id='silla'>	
-
-<TABLE >
-	<TR>
-		<TD>TTYS</TD> <TD><input type=" text" name="ttys" id ='ttys' value="" placeholder="ttys " class="ttys"></text></TD>  <TD>Estado</TD> <TD><input type=" text" name="estadoT" id = 'estadoT'
-		value="" placeholder="Estado TTY " class="estadoT"></text>	</TD>
-
-	</TR>
-<br>
-	<TR>
-		<TD>TTYS Video</TD> <TD><input type=" text" name="dev/video" id ='dev/video' value="" placeholder="ttys video" class="dev/video"></text></TD>  <TD>Estado</TD> <TD><input type=" text" name="estadoVideo" id = 'estadoVideo'
-		value="" placeholder="Estado TTY Video" class="estadoVideo"></text>	</TD>
-
-	</TR>
-
-	<TR>
-		<TD>Silla</TD> <TD><input type=" text" id='txtsilla' name="txtsilla" value="5" placeholder="Silla " class="txtsilla"></text></TD>  <TD>Estado</TD> <TD><input type=" text" name="txtEstadoSilla" id ='txtEstadoSilla' value="" placeholder="Estado Silla" class="txtEstadoSilla"></text>	</TD>
-	</TR>
-
-		<TR>
-		<TD>Video</TD> <TD><input type=" text" id = 'video' name="video" value="" placeholder="Video " class="video"></text></TD>  <TD>Estado</TD> <TD><input type=" text" name="estadoV" value="" placeholder="Estado Video" class="estadoV"></text>	</TD>
-	</TR>
-	
-	
-		</TABLE>
-
+			<div  id='consola' style='height:220px;width:1307px;border:1px solid #ccc;font:16px/26px ;overflow:auto;'>	
 
 
 
@@ -208,30 +276,29 @@ body{
 				</div>
 
 
-				<div class="row">
-				<div class="col-lg-6">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							Streaming
-				
+						
+			<div class="col-lg-2">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Panel Administrador
+					</div>
+					<div class="panel-body" id='admin'>	
+				<input type="button" id ='btnAbrir' value="Abrir ventana" onclick="ventanaNueva('Administrador/consola')" />
+
+				<input type="button" id ='btn3D' value="Abrir 3D" onclick="grafica('Administrador/grafica')" />
 					
-						</div>
-						<div class="panel-body" id='streaming'>	
-						<section class="experiment"> 
-			        <div id="videos-container"></div>
-			    </section>
-				<script src="<?php echo site_url('js'); ?>/streaming.js" type="text/javascript"></script>
-						</div>
 					</div>
 				</div>
-			<br>	
-
+			</div>
 
 	
 
 		</div>
 	</div>
 </div>
+
+
+
 
 </body>
 </html>
