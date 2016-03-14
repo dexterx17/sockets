@@ -18,7 +18,10 @@
 <body>
 	<h1>Streaming</h1>
     <section class="experiment"> 
-        <div id="videos-container"></div>
+        <div id="videos-container">
+        	
+        	
+        </div>
     </section>
 	<script src="<?php echo site_url('js'); ?>/streaming.js" type="text/javascript"></script>
 </body>

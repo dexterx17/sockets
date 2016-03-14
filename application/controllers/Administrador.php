@@ -45,6 +45,10 @@ class Administrador extends CI_Controller {
 		$data=array();
 		$this->load->view('administrador/streaming',$data);
 	}
+			public function g(){
+		$data=array();
+		$this->load->view('indexFinal.html',$data);
+	}
 
 	/**
 	 * Inicializa un socket en la ip y puertos especificados

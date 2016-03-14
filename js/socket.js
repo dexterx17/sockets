@@ -31,7 +31,7 @@
 
         //console.log(res.origen);
         if(typeof res!="null"){
-        console.log( res );
+      //  console.log( res );
        
  
           
@@ -43,8 +43,6 @@
               
        $("#txtconsola").append(res.resultado+'\n');
        }
-
-
            if(typeof res.val1!="undefined"){
               SendMessage('Q1','moverQ1',res.val1);
        
@@ -160,7 +158,48 @@
         $('#motor1').append(' <BR />');
         $('#motor1').append("Motor9 = " + res.mot9);
             
-        SendMessage('Q1','moverQ1',res.val1);
+        
+        try{
+
+
+
+        
+          SendMessage('Q1','moverQ1',parseInt(res.mot1));
+        
+        
+          SendMessage('Q2','moverQ2',parseInt(res.mot2));
+              
+        
+          SendMessage('Q3','moverQ3',parseInt(res.mot5));
+          
+        
+          SendMessage('Q4','moverQ4',parseInt(res.mot7));
+           
+        /*
+        if (res.mot5!=0) {
+          SendMessage('Q5','moverQ5',parseInt(res.mot5));
+        }     
+        if (res.mot6!=0) {
+          SendMessage('Q6','moverQ6',parseInt(res.mot6));
+        }    
+*/
+        /*
+       if (res.mot7!=0) {
+          SendMessage('Q7','moverQ7',res.mot7);
+        }   
+        if (res.mot8!=0) {
+          SendMessage('Q8','moverQ8',res.mot8);
+        }    
+        if (res.mot9!=0) {
+          SendMessage('Q9','moverQ9',res.mot9);
+        }     
+        */
+
+  }catch(error){
+    console.log("Error en SendMessage");
+  }
+
+
     }
 
  

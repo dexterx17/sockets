@@ -229,9 +229,12 @@ function grafica(documento){
 				
 					
 						</div>
+
+						
 						<div class="panel-body" id='streaming'>	
 						<section class="experiment"> 
 			        <div id="videos-container"></div>
+			        
 			    </section>
 				<script src="<?php echo site_url('js'); ?>/streaming.js" type="text/javascript"></script>
 				
@@ -283,9 +286,9 @@ function grafica(documento){
 						Panel Administrador
 					</div>
 					<div class="panel-body" id='admin'>	
-				<input type="button" id ='btnAbrir' value="Abrir ventana" onclick="ventanaNueva('Administrador/consola')" />
+				<input type="button" id ='btnAbrir' value="Abrir ventana" onclick="ventanaNueva('<?php echo site_url('index.php/Administrador/consola'); ?> ')"/>
 
-				<input type="button" id ='btn3D' value="Abrir 3D" onclick="grafica('Administrador/grafica')" />
+				<input type="button" id ='btn3D' value="Abrir 3D" onclick="grafica('<?php echo site_url('index.php/Administrador/grafica'); ?> ')"/>
 					
 					</div>
 				</div>
